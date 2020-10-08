@@ -1,0 +1,45 @@
+<root>
+   <name>JS Addons</name>
+   <key>jsaddons</key>
+   <state>stable</state> <!-- stable | unstable | beta | alpha -->
+   <logo>https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons.png</logo>
+   <description>
+      <short>
+		<en>Adds actual time tracking for GLPI tasks</en>
+      </short>
+      <long>
+		<en>JSAddons tracks actual task time tracking for GLPI ticket tasks and compares it to planned time.</en>
+      </long>
+   </description>
+   <homepage>https://tic.gal/en/project/jsaddons-plugin-glpi/</homepage>
+   <download>https://github.com/ticgal/jsaddons/releases</download>
+   <issues>https://github.com/ticgal/jsaddons/issues</issues>
+   <readme>https://github.com/ticgal/jsaddons/blob/master/README.md</readme>
+   <authors>
+      <author>TICgal</author>
+   </authors>
+   <versions>
+       <version>
+            <num>1.0.0</num>
+            <compatibility>~9.5.0</compatibility>
+            <download_url>https://github.com/ticgal/jsaddons/releases/download/1.0.0/glpi-jsaddons-1.0.0.tar.tgz</download_url>
+       </version>
+   </versions>
+   <langs>
+      <lang>en_GB</lang>
+   </langs>
+   <license>AGPL v3+</license>
+   <tags>
+      	<en>
+            <tag>Chat</tag>
+    		<tag>Analytics</tag>
+            <tag></tag>
+        </en>
+   </tags>
+   <screenshots>
+      <screenshot>https://raw.githubusercontent.com/ticgal/actualtime/multimedia/JSAddons-GLPI-Plugin-1.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/ticgal/actualtime/multimedia/JSAddons-GLPI-Plugin-2.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/ticgal/actualtime/multimedia/JSAddons-GLPI-Plugin-3.png</screenshot>
+      <screenshot>https://raw.githubusercontent.com/ticgal/actualtime/multimedia/JSAddons-GLPI-Plugin-4.png</screenshot>
+   </screenshots>
+</root>
