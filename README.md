@@ -1,5 +1,5 @@
 # JS Addons
- <img src="https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons.png)" alt="JS Addons Logo" height="250px" width="250px" class="js-lazy-loaded">
+ <img src="https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons-logo.png" alt="JS Addons Logo" height="250px" width="250px" class="js-lazy-loaded">
  JS Addons is developed to allow the use of several useful web tools in GLPI by inserting JavaScript snippets for them to execute.  
 
 Currently, **JS Addons** supports:
