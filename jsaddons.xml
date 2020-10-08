@@ -5,10 +5,16 @@
    <logo>https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons-logo.png</logo>
    <description>
       <short>
-		<en>Adds actual time tracking for GLPI tasks</en>
+		<en>Allows the use of several useful web tools by inserting their JS snippets</en>
       </short>
       <long>
-		<en>JSAddons tracks actual task time tracking for GLPI ticket tasks and compares it to planned time.</en>
+		<en>JS Addons is developed to allow the use of several useful web tools in GLPI by inserting JavaScript snippets for them to execute. Currently, JS Addons supports:
+		Analytics:
+			* Metricool
+			* Google Analytics
+		Chat:
+			* Tawk.to
+	      </en>
       </long>
    </description>
    <homepage>https://tic.gal/en/project/jsaddons-plugin-glpi/</homepage>
@@ -32,14 +38,13 @@
    <tags>
       	<en>
             <tag>Chat</tag>
-    		<tag>Analytics</tag>
-            <tag></tag>
+    	    <tag>Analytics</tag>
+	    <tag>Helpdesk</tag>
         </en>
    </tags>
    <screenshots>
       <screenshot>https://raw.githubusercontent.com/ticgal/actualtime/multimedia/JSAddons-GLPI-Plugin-1.png</screenshot>
       <screenshot>https://raw.githubusercontent.com/ticgal/actualtime/multimedia/JSAddons-GLPI-Plugin-2.png</screenshot>
       <screenshot>https://raw.githubusercontent.com/ticgal/actualtime/multimedia/JSAddons-GLPI-Plugin-3.png</screenshot>
-      <screenshot>https://raw.githubusercontent.com/ticgal/actualtime/multimedia/JSAddons-GLPI-Plugin-4.png</screenshot>
    </screenshots>
 </root>
