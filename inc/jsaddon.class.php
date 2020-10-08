@@ -26,6 +26,20 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		return false;
 	}
 
+	function rawSearchOptions(){
+		$tab=parent::rawSearchOptions();
+
+		$tab[]=[
+			'id'=>10,
+			'table'=>$this->getTable(),
+			'field'=>'is_active',
+			'name'=>__('Active'),
+			'datatype'=>'bool'
+		];
+
+		return $tab;
+	}
+
 	public static function getIcon() {
 		return 'fas fa-file-code';
 	}
@@ -69,7 +83,7 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 
 		$query=[
 			'SELECT'=>[
-				'name',
+				'filename',
 				'key',
 			],
 			'FROM'=>self::getTable(),
@@ -80,7 +94,7 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		$script=[];
 		$iterator=$DB->request($query);
 		while ($row = $iterator->next()) {
-			$file=Plugin::getPhpDir('jsaddons')."/js/".$row['name'].".js";
+			$file=Plugin::getPhpDir('jsaddons')."/js/".$row['filename'];
 			if (file_exists($file)) {
 				$content=file_get_contents($file);
 				$script[]=str_replace("##KEY##", $row['key'], $content);
@@ -100,6 +114,7 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 			$query = "CREATE TABLE IF NOT EXISTS `$table` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+				`filename` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 				`is_active` tinyint(1) NOT NULL DEFAULT '0',
 				`date_creation` timestamp NULL DEFAULT NULL,
 				`date_mod` timestamp NULL DEFAULT NULL,
@@ -109,10 +124,22 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 			$DB->query($query) or die($DB->error());
 
 			$jsaddons=new self();
-			$list=['metricool','tawkto','analytics'];
+			$list=[
+				[
+					'name'=>'Metricool',
+					'filename'=>'metricool.js'
+				],[
+					'name'=>'Tawk.to',
+					'filename'=>'tawkto.js',
+				],[
+					'name'=>'Google Analytics',
+					'filename'=>'gtag.js',
+				]
+			];
 			foreach ($list as $key => $value) {
 				$jsaddons->add([
-					'name'=>$value,
+					'name'=>$value['name'],
+					'filename'=>$value['filename']
 				]);
 			}
 		}
