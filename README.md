@@ -4,11 +4,12 @@
 
 Currently, **JS Addons** supports:
 
--  Analytics:
-  -  [Metricool](http://mtr.cool/yfuhbk)
-  -  Google Analytics
--  Chat:
-  -  [Tawk.to](https://www.tawk.to/?pid=snaotzu)
+Analytics:
+  - [Metricool](http://mtr.cool/yfuhbk)
+  - Google Analytics
+
+Chat:
+  - [Tawk.to](https://www.tawk.to/?pid=snaotzu)
 
 ## How to use
 
