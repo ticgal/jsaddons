@@ -2,7 +2,7 @@
    <name>JS Addons</name>
    <key>jsaddons</key>
    <state>stable</state> <!-- stable | unstable | beta | alpha -->
-   <logo>https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons.png</logo>
+   <logo>https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons-logo.png</logo>
    <description>
       <short>
 		<en>Adds actual time tracking for GLPI tasks</en>
