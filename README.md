@@ -4,11 +4,12 @@
 
 Currently, **JS Addons** supports:
 
--  Analytics:
-  -  [Metricool](http://mtr.cool/yfuhbk)
-  -  Google Analytics
--  Chat:
-  -  [Tawk.to](https://www.tawk.to/?pid=snaotzu)
+Analytics:
+  - [Metricool](http://mtr.cool/yfuhbk)
+  - Google Analytics
+
+Chat:
+  - [Tawk.to](https://www.tawk.to/?pid=snaotzu)
 
 ## How to use
 
@@ -56,9 +57,9 @@ Realtime report will show your current users.
 
 Login to your tawk.to dashboard. Click on Administration, and choose the property you want to configure. Select Channels > Chat Widget.
 
-On Direct Chat Link there is a URL with this structure https://tawk.to/chat/XXXXXXXXXXXXXXXXXXXXXXXX/XXXXXXX
+On Direct Chat Link there is a URL with this structure tawk.to/chat/**XXXXXXXXXXXXXXXXXXXXXXXX/XXXXXXX**
 
-Copy the string after  https://tawk.to/chat/ and paste it to the Tawk.to form. Activate it. The Tawk.to widget will appear on the bottom right corner of GLPI.
+Copy the string after  tawk.to/chat/ and paste it to the Tawk.to form. Activate it. The Tawk.to widget will appear on the bottom right corner of GLPI.
 
 ## Adding new Services
 
