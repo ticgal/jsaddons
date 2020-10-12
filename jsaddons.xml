@@ -8,19 +8,7 @@
 		<en>Allows the use of several useful web tools by inserting their JS snippets</en>
       </short>
       <long>
-		<en><![CDATA[JS Addons is developed to allow the use of several useful web tools in GLPI by inserting JavaScript snippets for them to execute. Currently, JS Addons supports:
-		<ul>
-		<li>Analytics:</li>
-			<ul>
-			<li><a href="http://mtr.cool/yfuhbk">Metricool</a></li>
-			<li>Google Analytics</li>
-			</ul>
-		<li>Chat:</li>
-			<ul>
-			<li><a href="https://www.tawk.to/?pid=snaotzu">Tawk.to</a></li>
-			</ul>
-		</ul>
-	      	]]></en>
+		<en><![CDATA[JS Addons is developed to allow the use of several useful web tools in GLPI by inserting JavaScript snippets for them to execute. Currently, JS Addons supports:<ul><li>Analytics:</li><ul><li><a href="http://mtr.cool/yfuhbk">Metricool</a></li><li>Google Analytics</li></ul><li>Chat:</li><ul><li><a href="https://www.tawk.to/?pid=snaotzu">Tawk.to</a></li></ul></ul>]]></en>
       </long>
    </description>
    <homepage>https://tic.gal/en/project/jsaddons/</homepage>
