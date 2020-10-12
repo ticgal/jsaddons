@@ -9,7 +9,8 @@
       </short>
       <long>
 		<en>
-		<!CDATA[JS Addons is developed to allow the use of several useful web tools in GLPI by inserting JavaScript snippets for them to execute. Currently, JS Addons supports:
+			
+		<![CDATA[JS Addons is developed to allow the use of several useful web tools in GLPI by inserting JavaScript snippets for them to execute. Currently, JS Addons supports:
 		<ul>
 		<li>Analytics:</li>
 			<ul>
