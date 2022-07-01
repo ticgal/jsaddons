@@ -65,7 +65,12 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		echo "<tr class='tab_bg_1'>";
 		echo "<td>".__("Key")."</td>";
 		echo "<td>";
-		Html::autocompletionTextField($this, "key",['value'=>$this->fields["key"]]);
+		echo Html::input(
+			'key',
+			[
+				'value'=> $this->fields["key"]
+			]
+		);
 		echo "</td>";
 		echo "</tr>";
 
