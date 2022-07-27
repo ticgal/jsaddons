@@ -52,7 +52,7 @@ Copy the hash, paste it to the Metricool form and activate it. You need to visit
 
 Google Analytics uses a Global Site Tag or **gtag** identified as GA_TRACKING_ID with this structure: 
 
-**UA-XXXXXXXX-X**.
+**G-XXXXXXXXXX**.
 
 Copy it, paste it to the Google Analytics form and activate it. You need to visit Google Analytics in order to check if it is fully working.
 
