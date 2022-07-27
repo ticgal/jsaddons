@@ -98,7 +98,7 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		];
 		$script=[];
 		$iterator=$DB->request($query);
-		while ($row = $iterator->next()) {
+		foreach($iterator as $row) {
 			$file=Plugin::getPhpDir('jsaddons')."/js/".$row['filename'];
 			if (file_exists($file)) {
 				$content=file_get_contents($file);
