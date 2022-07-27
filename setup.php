@@ -1,9 +1,9 @@
 <?php
 
-define('PLUGIN_JSADDONS_VERSION','1.0.0');
+define('PLUGIN_JSADDONS_VERSION','2.0.0');
 
-define('PLUGIN_JSADDONS_MIN_GLPI','9.5.0');
-define('PLUGIN_JSADDONS_MAX_GLPI','9.6');
+define('PLUGIN_JSADDONS_MIN_GLPI','10.0');
+define('PLUGIN_JSADDONS_MAX_GLPI','11.0');
 
 
 function plugin_version_jsaddons(){

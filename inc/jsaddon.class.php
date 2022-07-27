@@ -65,7 +65,12 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		echo "<tr class='tab_bg_1'>";
 		echo "<td>".__("Key")."</td>";
 		echo "<td>";
-		Html::autocompletionTextField($this, "key",['value'=>$this->fields["key"]]);
+		echo Html::input(
+			'key',
+			[
+				'value'=> $this->fields["key"]
+			]
+		);
 		echo "</td>";
 		echo "</tr>";
 
@@ -93,7 +98,7 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		];
 		$script=[];
 		$iterator=$DB->request($query);
-		while ($row = $iterator->next()) {
+		foreach($iterator as $row) {
 			$file=Plugin::getPhpDir('jsaddons')."/js/".$row['filename'];
 			if (file_exists($file)) {
 				$content=file_get_contents($file);
