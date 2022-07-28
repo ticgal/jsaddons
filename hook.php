@@ -32,7 +32,7 @@
  @link      https://tic.gal
  @since     2020-2022
  ---------------------------------------------------------------------- */
- 
+
 function plugin_jsaddons_install(){
 	$migration=new Migration(PLUGIN_JSADDONS_VERSION);
 
@@ -58,7 +58,7 @@ function plugin_jsaddons_uninstall(){
 		if (preg_match("/inc.(.+)\.class.php/", $filepath, $matches)) {
 			$classname = 'PluginJsaddons' . ucfirst($matches[1]);
 			include_once($filepath);
-			if (method_exists($classname, 'install')) {
+			if (method_exists($classname, 'uninstall')) {
 				$classname::uninstall($migration);
 			}
 		}
