@@ -1,5 +1,5 @@
 # JS Addons
- <img src="https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons-logo.png" alt="JS Addons Logo" height="250px" width="250px" class="js-lazy-loaded">
+ <img src="https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons.png" alt="JS Addons Logo" height="250px" width="250px" class="js-lazy-loaded">
 
 [![License](https://img.shields.io/badge/License-GNU%20AGPLv3-blue.svg)](https://github.com/ticgal/jsaddons/blob/main/LICENSE)
 [![Twitter](https://img.shields.io/badge/Twitter-TICgal-blue.svg)](https://twitter.com/ticgalcom)
