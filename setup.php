@@ -2,7 +2,7 @@
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
- Copyright (C) 2018 by the TICgal Team.
+ Copyright (C) 2018-2026 by the TICgal Team.
 
  https://github.com/ticgal/jsaddons
  -------------------------------------------------------------------------
@@ -26,18 +26,19 @@
  --------------------------------------------------------------------------
  @package   JS Addons
  @author    the TICgal team
- @copyright Copyright (c) 2018 TICgal team
+ @copyright Copyright (c) 2026 TICgal team
  @license   AGPL License 3.0 or (at your option) any later version
             http://www.gnu.org/licenses/agpl-3.0-standalone.html
  @link      https://tic.gal
- @since     2020-2022
+ @since     2018
  ---------------------------------------------------------------------- */
 
-define('PLUGIN_JSADDONS_VERSION','2.0.0');
+define('PLUGIN_JSADDONS_VERSION','3.0.0-beta1');
 
-define('PLUGIN_JSADDONS_MIN_GLPI','10.0');
-define('PLUGIN_JSADDONS_MAX_GLPI','11.0');
+define('PLUGIN_JSADDONS_MIN_GLPI','11.0');
+define('PLUGIN_JSADDONS_MAX_GLPI','12.0');
 
+define('PLUGIN_JSADDONS_WEB_DIR','plugins/jsaddons');
 
 function plugin_version_jsaddons(){
 	return [
