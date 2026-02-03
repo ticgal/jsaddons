@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------
 # make_release.sh
 # Based on fusioninventory-for-glpi make_release.sh
-# Copyright (C) 2018-2019 by TICgal 
+# Copyright (C) 2018-2026 by TICGAL 
 # https://github.com/ticgal/jsaddons
 # -------------------------------------------------------------------------
 # LICENSE
@@ -20,8 +20,8 @@
 # along with jsaddons. If not, see <http://www.gnu.org/licenses/>.
 # --------------------------------------------------------------------------
 # @package   jsaddons
-# @author    TICgal
-# @copyright Copyright (c) 2018-2019 TICgal
+# @author    TICGAL
+# @copyright Copyright (c) 2026 TICGAL
 # @license   AGPL License 3.0 or (at your option) any later version
 #            http://www.gnu.org/licenses/agpl-3.0-standalone.html
 # @link      https://tic.gal
