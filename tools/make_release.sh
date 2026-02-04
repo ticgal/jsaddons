@@ -106,7 +106,7 @@ rm -rf screenshots
 
 echo "Creating tarball"
 cd ..
-tar czf "$PLUGINNAME-$RELEASE.tar.tgz" $PLUGINNAME
+tar cjf "glpi-$PLUGINNAME-$RELEASE.tar.bz2" $PLUGINNAME
 
 cd $INIT_PWD;
 
