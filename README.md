@@ -1,12 +1,17 @@
 # JS Addons
- <img src="https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons-logo.png" alt="JS Addons Logo" height="250px" width="250px" class="js-lazy-loaded">
+ <img src="https://raw.githubusercontent.com/ticgal/jsaddons/multimedia/jsaddons.png" alt="JS Addons Logo" height="250px" width="250px" class="js-lazy-loaded">
+
+[![License](https://img.shields.io/badge/License-GNU%20AGPLv3-blue.svg)](https://github.com/ticgal/jsaddons/blob/main/LICENSE)
+[![Twitter](https://img.shields.io/badge/Twitter-TICgal-blue.svg)](https://twitter.com/ticgalcom)
+[![TICgal](https://img.shields.io/badge/Web-TICgal-blue.svg)](https://tic.gal/)
+
  JS Addons is developed to allow the use of several useful web tools in GLPI by inserting JavaScript snippets for them to execute.  
 
 Currently, **JS Addons** supports:
 
 Analytics:
   - [Metricool](http://mtr.cool/yfuhbk)
-  - Google Analytics
+  - [Google Analytics](https://analytics.google.com)
 
 Chat:
   - [Tawk.to](https://www.tawk.to/?pid=snaotzu)
@@ -47,7 +52,7 @@ Copy the hash, paste it to the Metricool form and activate it. You need to visit
 
 Google Analytics uses a Global Site Tag or **gtag** identified as GA_TRACKING_ID with this structure: 
 
-**UA-XXXXXXXX-X**.
+**G-XXXXXXXXXX**.
 
 Copy it, paste it to the Google Analytics form and activate it. You need to visit Google Analytics in order to check if it is fully working.
 

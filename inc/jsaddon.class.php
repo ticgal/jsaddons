@@ -1,5 +1,38 @@
 <?php
+/*
+ -------------------------------------------------------------------------
+ JS Addons plugin for GLPI
+ Copyright (C) 2018-2026 by the TICGAL Team.
 
+ https://github.com/ticgal/jsaddons
+ -------------------------------------------------------------------------
+
+ LICENSE
+
+ This file is part of the JS Addons plugin.
+
+ JS Addons plugin is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+
+ JS Addons plugin is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with JS Addons. If not, see <http://www.gnu.org/licenses/>.
+ --------------------------------------------------------------------------
+ @package   JS Addons
+ @author    the TICGAL team
+ @copyright Copyright (c) 2026 TICGAL team
+ @license   AGPL License 3.0 or (at your option) any later version
+            http://www.gnu.org/licenses/agpl-3.0-standalone.html
+ @link      https://tic.gal
+ @since     2018
+ ---------------------------------------------------------------------- */
+ 
 if (!defined('GLPI_ROOT')) {
 	die("Sorry. You can't access this file directly");
 }
@@ -16,7 +49,7 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		$menu = [];
 		if (Config::canUpdate()) {
 			$menu['title'] = self::getMenuName();
-			$menu['page']  = '/' . Plugin::getWebDir('jsaddons', false) . '/front/jsaddon.php';
+			$menu['page']  = PLUGIN_JSADDONS_WEB_DIR . '/front/jsaddon.php';
 			$menu['icon']  = self::getIcon();
 		}
 		if (count($menu)) {
@@ -65,7 +98,12 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		echo "<tr class='tab_bg_1'>";
 		echo "<td>".__("Key")."</td>";
 		echo "<td>";
-		Html::autocompletionTextField($this, "key",['value'=>$this->fields["key"]]);
+		echo Html::input(
+			'key',
+			[
+				'value'=> $this->fields["key"]
+			]
+		);
 		echo "</td>";
 		echo "</tr>";
 
@@ -93,7 +131,7 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		];
 		$script=[];
 		$iterator=$DB->request($query);
-		while ($row = $iterator->next()) {
+		foreach($iterator as $row) {
 			$file=Plugin::getPhpDir('jsaddons')."/js/".$row['filename'];
 			if (file_exists($file)) {
 				$content=file_get_contents($file);
@@ -121,7 +159,8 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 				`key` varchar(255) COLLATE utf8_unicode_ci NULL,
 				PRIMARY KEY (`id`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-			$DB->query($query) or die($DB->error());
+			
+			$DB->doQuery($query);
 
 			$jsaddons=new self();
 			$list=[
