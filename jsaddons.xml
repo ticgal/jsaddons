@@ -19,6 +19,11 @@
    </authors>
    <versions>
       <version>
+         <num>3.0.0</num>
+         <compatibility>~11.0.0</compatibility>
+         <download_url>https://github.com/ticgal/jsaddons/releases/download/3.0.0/glpi-jsaddons-3.0.0.tar.bz2</download_url>
+      </version>
+      <version>
          <num>2.0.0</num>
          <compatibility>~10.0.0</compatibility>
          <download_url>https://github.com/ticgal/jsaddons/releases/download/2.0.0/glpi-jsaddons-2.0.0.tar.tgz</download_url>
