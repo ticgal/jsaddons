@@ -44,7 +44,7 @@ function plugin_version_jsaddons(){
 	return [
 		'name'=>'JS Addons',
 		'version'=>PLUGIN_JSADDONS_VERSION,
-		'author'=>'<a href="https://tic.gal">TICgal</a>',
+		'author'=>'<a href="https://tic.gal">TICGAL</a>',
 		'homepage' => 'https://tic.gal/en/jsaddons',
 		'requirements' => [
 			'glpi' => [
