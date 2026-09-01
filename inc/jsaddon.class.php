@@ -132,7 +132,7 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 		$script=[];
 		$iterator=$DB->request($query);
 		foreach($iterator as $row) {
-			$file=Plugin::getPhpDir('jsaddons')."/js/".$row['filename'];
+			$file=Plugin::getPhpDir('jsaddons')."/public/".$row['filename'];
 			if (file_exists($file)) {
 				$content=file_get_contents($file);
 				$script[]=str_replace("##KEY##", $row['key'], $content);

@@ -33,7 +33,7 @@
  @since     2018
  ---------------------------------------------------------------------- */
 
-define('PLUGIN_JSADDONS_VERSION','3.0.0');
+define('PLUGIN_JSADDONS_VERSION','3.0.1-beta1');
 
 define('PLUGIN_JSADDONS_MIN_GLPI','11.0');
 define('PLUGIN_JSADDONS_MAX_GLPI','12.0');
@@ -63,7 +63,7 @@ function plugin_init_jsaddons(){
 		$PLUGIN_HOOKS['menu_toadd']['jsaddons'] = [
 			'config' => 'PluginJsaddonsJsaddon',
 		];
-		$PLUGIN_HOOKS['add_javascript']['jsaddons'][]="js/jsaddons.js";
+		$PLUGIN_HOOKS['add_javascript']['jsaddons'][]="public/jsaddons.js";
 		$PLUGIN_HOOKS['display_login']['jsaddons']="plugin_jsaddons_login";
 	}
 }

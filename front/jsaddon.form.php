@@ -33,8 +33,6 @@
  @since     2018
  ---------------------------------------------------------------------- */
  
-include ('../../../inc/includes.php');
-
 $plugin=new Plugin();
 if (!$plugin->isInstalled('jsaddons') || !$plugin->isActivated('jsaddons')) {
 	throw new Symfony\Component\HttpKernel\Exception\NotFoundHttpException();

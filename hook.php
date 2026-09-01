@@ -71,5 +71,5 @@ function plugin_jsaddons_uninstall(){
 
 function plugin_jsaddons_login(){
 	$version = Plugin::getInfo('jsaddons', 'version');
-	echo Html::script(GLPI_ROOT ."/" . PLUGIN_JSADDONS_WEB_DIR."/js/jsaddons.js", ['version' => $version]);
+	echo Html::script(GLPI_ROOT ."/" . PLUGIN_JSADDONS_WEB_DIR."/public/jsaddons.js", ['version' => $version]);
 }
