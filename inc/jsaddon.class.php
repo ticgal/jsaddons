@@ -150,15 +150,15 @@ class PluginJsaddonsJsaddon extends CommonDBTM {
 			$migration->displayMessage("Installing $table");
 
 			$query = "CREATE TABLE IF NOT EXISTS `$table` (
-				`id` int(11) NOT NULL AUTO_INCREMENT,
-				`name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-				`filename` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+				`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+				`name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+				`filename` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 				`is_active` tinyint(1) NOT NULL DEFAULT '0',
 				`date_creation` timestamp NULL DEFAULT NULL,
 				`date_mod` timestamp NULL DEFAULT NULL,
-				`key` varchar(255) COLLATE utf8_unicode_ci NULL,
+				`key` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
 				PRIMARY KEY (`id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_unicode_ci;";
 			
 			$DB->doQuery($query);
 
