@@ -33,7 +33,7 @@
  @since     2018
  ---------------------------------------------------------------------- */
 
-define('PLUGIN_JSADDONS_VERSION','3.0.1-beta1');
+define('PLUGIN_JSADDONS_VERSION','3.0.1-beta2');
 
 define('PLUGIN_JSADDONS_MIN_GLPI','11.0');
 define('PLUGIN_JSADDONS_MAX_GLPI','12.0');
