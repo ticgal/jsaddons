@@ -70,6 +70,7 @@ function plugin_jsaddons_uninstall(){
 }
 
 function plugin_jsaddons_login(){
+	global $CFG_GLPI;
 	$version = Plugin::getInfo('jsaddons', 'version');
-	echo Html::script(GLPI_ROOT ."/" . PLUGIN_JSADDONS_WEB_DIR."/public/jsaddons.js", ['version' => $version]);
+	echo Html::script($CFG_GLPI['root_doc'] . "/" . PLUGIN_JSADDONS_WEB_DIR . "/public/jsaddons.js", ['version' => $version]);
 }
