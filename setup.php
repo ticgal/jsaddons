@@ -35,7 +35,7 @@
 
 use Glpi\Http\Firewall;
 
-define('PLUGIN_JSADDONS_VERSION','3.0.1');
+define('PLUGIN_JSADDONS_VERSION','3.0.1-beta3');
 
 define('PLUGIN_JSADDONS_MIN_GLPI','11.0');
 define('PLUGIN_JSADDONS_MAX_GLPI','12.0');
