@@ -20,11 +20,19 @@ Chat:
 
 ### Install
 
-Install the plugin as usual or using the new GLPI 9.5 Marketplace.
+Install the plugin as usual or using the GLPI Marketplace.
+
+| Plugin version | GLPI version |
+|---|---|
+| 4.x | 12.0.x |
+| 3.x | 11.0.x |
+| 2.x | 10.0.x |
 
 ### Permissions
 
 The user profile must be able to edit GLPI configuration. This user will usually need a Super-Admin profile.
+
+Since GLPI 12, like the core configuration, GLPI asks for the password again (re-authentication) before showing the addons.
 
 ### Setup
 
@@ -32,7 +40,7 @@ There is a new **JS Addons** under **Setup** menu once the plugin is enabled. Cl
 
 It will show supported Addons, and if their status.
 
-Click on the one you want to configure. You need the Key, Tag, URL or whatever code it is embedded on the JavaScript snippet.
+Click on the one you want to configure. You need the Key, Tag, URL or whatever code it is embedded on the JavaScript snippet. Only letters, digits and the characters `.` `_` `-` `/` are accepted.
 
 Note: Setting up every service is out of the scope of this . Each of them has its own support; you can contact to get the codes or learn how to use them.
 

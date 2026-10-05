@@ -1,4 +1,5 @@
 <?php
+
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
@@ -32,25 +33,17 @@
  @link      https://tic.gal
  @since     2018
  ---------------------------------------------------------------------- */
- 
-$plugin=new Plugin();
-if (!$plugin->isInstalled('jsaddons') || !$plugin->isActivated('jsaddons')) {
-	throw new Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+
+use Glpi\Exception\Http\NotFoundHttpException;
+use GlpiPlugin\Jsaddons\Jsaddon;
+
+if (!Plugin::isPluginActive('jsaddons')) {
+    throw new NotFoundHttpException();
 }
 
-Html::header(
-	PluginJsaddonsJsaddon::getTypeName(2),
-	'',
-	'config',
-	'pluginjsaddonsjsaddon'
-);
+Jsaddon::checkReAuthenticationOrRedirect();
+Session::checkRight(Jsaddon::$rightname, READ);
 
-$jsaddons= new PluginJsaddonsJsaddon();
-$jsaddons->checkGlobal(READ);
-if ($jsaddons->canView()) {
-	Search::show('PluginJsaddonsJsaddon');
-}else{
-	throw new Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
-}
-
+Html::header(Jsaddon::getTypeName(Session::getPluralNumber()), '', 'config', Jsaddon::class);
+Search::show(Jsaddon::class);
 Html::footer();

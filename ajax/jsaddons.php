@@ -1,4 +1,5 @@
 <?php
+
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
@@ -32,11 +33,14 @@
  @link      https://tic.gal
  @since     2018
  ---------------------------------------------------------------------- */
- 
-header("Content-Type: text/html; charset=UTF-8");
+
+use GlpiPlugin\Jsaddons\Jsaddon;
+
+// Public endpoint (also used on the login page): see the firewall strategy in setup.php.
+// It only returns the snippets of the active addons, which end up in every page anyway.
+header('Content-Type: application/json; charset=UTF-8');
 Html::header_nocache();
 
 if (isset($_POST['list'])) {
-	$script=PluginJsaddonsJsaddon::getScript();
-	echo json_encode($script);
+    echo json_encode(Jsaddon::getScript());
 }

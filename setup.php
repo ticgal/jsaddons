@@ -1,4 +1,5 @@
 <?php
+
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
@@ -34,45 +35,52 @@
  ---------------------------------------------------------------------- */
 
 use Glpi\Http\Firewall;
+use Glpi\Plugin\Hooks;
+use GlpiPlugin\Jsaddons\Jsaddon;
 
-define('PLUGIN_JSADDONS_VERSION','3.0.1');
+define('PLUGIN_JSADDONS_VERSION', '4.0.0-beta.1');
 
-define('PLUGIN_JSADDONS_MIN_GLPI','11.0');
-define('PLUGIN_JSADDONS_MAX_GLPI','12.0');
+// Minimal GLPI version, inclusive
+define('PLUGIN_JSADDONS_MIN_GLPI', '12.0.0');
+// Maximum GLPI version, exclusive
+define('PLUGIN_JSADDONS_MAX_GLPI', '12.1.0');
 
-define('PLUGIN_JSADDONS_WEB_DIR','plugins/jsaddons');
-
-function plugin_version_jsaddons(){
-	return [
-		'name'=>'JS Addons',
-		'version'=>PLUGIN_JSADDONS_VERSION,
-		'author'=>'<a href="https://tic.gal">TICGAL</a>',
-		'homepage' => 'https://tic.gal/en/jsaddons',
-		'requirements' => [
-			'glpi' => [
-				'min' => PLUGIN_JSADDONS_MIN_GLPI,
-				'max' => PLUGIN_JSADDONS_MAX_GLPI,
-			]
-		]
-	];
+function plugin_version_jsaddons()
+{
+    return [
+        'name'         => 'JS Addons',
+        'version'      => PLUGIN_JSADDONS_VERSION,
+        'author'       => '<a href="https://tic.gal">TICGAL</a>',
+        'license'      => 'AGPL-3.0-or-later',
+        'homepage'     => 'https://tic.gal/en/jsaddons',
+        'requirements' => [
+            'glpi' => [
+                'min' => PLUGIN_JSADDONS_MIN_GLPI,
+                'max' => PLUGIN_JSADDONS_MAX_GLPI,
+            ],
+        ],
+    ];
 }
 
-function plugin_init_jsaddons(){
-	global $PLUGIN_HOOKS,$CFG_GLPI;
-	$PLUGIN_HOOKS['csrf_compliant']['jsaddons']=true;
+function plugin_init_jsaddons()
+{
+    /** @var array $PLUGIN_HOOKS */
+    global $PLUGIN_HOOKS;
 
-	Firewall::addPluginStrategyForLegacyScripts(
-		'jsaddons',
-		'#^/ajax/jsaddons\.php$#',
-		Firewall::STRATEGY_NO_CHECK
-	);
+    // The addons are also loaded on the login page, before authentication
+    Firewall::addPluginStrategyForLegacyScripts(
+        'jsaddons',
+        '#^/ajax/jsaddons\.php$#',
+        Firewall::STRATEGY_NO_CHECK,
+    );
 
-	$plugin=new Plugin();
-	if ($plugin->isActivated('jsaddons')) {
-		$PLUGIN_HOOKS['menu_toadd']['jsaddons'] = [
-			'config' => 'PluginJsaddonsJsaddon',
-		];
-		$PLUGIN_HOOKS['add_javascript']['jsaddons'][]="public/jsaddons.js";
-		$PLUGIN_HOOKS['display_login']['jsaddons']="plugin_jsaddons_login";
-	}
+    if (!Plugin::isPluginActive('jsaddons')) {
+        return;
+    }
+
+    $PLUGIN_HOOKS[Hooks::MENU_TOADD]['jsaddons'] = [
+        'config' => Jsaddon::class,
+    ];
+    $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['jsaddons'][] = 'jsaddons.js';
+    $PLUGIN_HOOKS[Hooks::DISPLAY_LOGIN]['jsaddons'] = 'plugin_jsaddons_login';
 }

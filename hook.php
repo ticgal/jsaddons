@@ -1,4 +1,5 @@
 <?php
+
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
@@ -33,44 +34,37 @@
  @since     2018
  ---------------------------------------------------------------------- */
 
-function plugin_jsaddons_install(){
-	$migration=new Migration(PLUGIN_JSADDONS_VERSION);
+use GlpiPlugin\Jsaddons\Jsaddon;
 
-	foreach (glob(__DIR__ .'/inc/*') as $filepath) {
-		if (preg_match("/inc.(.+)\.class.php/", $filepath, $matches)) {
-			$classname = 'PluginJsaddons' . ucfirst($matches[1]);
-			include_once($filepath);
-			if (method_exists($classname, 'install')) {
-				$classname::install($migration);
-			}
-		}
-	}
+function plugin_jsaddons_install()
+{
+    $migration = new Migration(PLUGIN_JSADDONS_VERSION);
 
-	$migration->executeMigration();
+    Jsaddon::install($migration);
 
-	return true;
+    $migration->executeMigration();
+
+    return true;
 }
 
-function plugin_jsaddons_uninstall(){
-	$migration=new Migration(PLUGIN_JSADDONS_VERSION);
+function plugin_jsaddons_uninstall()
+{
+    $migration = new Migration(PLUGIN_JSADDONS_VERSION);
 
-	foreach (glob(__DIR__ .'/inc/*') as $filepath) {
-		if (preg_match("/inc.(.+)\.class.php/", $filepath, $matches)) {
-			$classname = 'PluginJsaddons' . ucfirst($matches[1]);
-			include_once($filepath);
-			if (method_exists($classname, 'uninstall')) {
-				$classname::uninstall($migration);
-			}
-		}
-	}
+    Jsaddon::uninstall($migration);
 
-	$migration->executeMigration();
+    $migration->executeMigration();
 
-	return true;
+    return true;
 }
 
-function plugin_jsaddons_login(){
-	global $CFG_GLPI;
-	$version = Plugin::getInfo('jsaddons', 'version');
-	echo Html::script($CFG_GLPI['root_doc'] . "/" . PLUGIN_JSADDONS_WEB_DIR . "/public/jsaddons.js", ['version' => $version]);
+function plugin_jsaddons_login()
+{
+    /** @var array $CFG_GLPI */
+    global $CFG_GLPI;
+
+    echo Html::script(
+        $CFG_GLPI['root_doc'] . '/plugins/jsaddons/jsaddons.js',
+        ['version' => PLUGIN_JSADDONS_VERSION],
+    );
 }

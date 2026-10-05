@@ -1,4 +1,5 @@
 <?php
+
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
@@ -32,31 +33,27 @@
  @link      https://tic.gal
  @since     2018
  ---------------------------------------------------------------------- */
- 
-$plugin=new Plugin();
-if (!$plugin->isInstalled('jsaddons') || !$plugin->isActivated('jsaddons')) {
-	throw new Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+
+use Glpi\Exception\Http\NotFoundHttpException;
+use GlpiPlugin\Jsaddons\Jsaddon;
+
+if (!Plugin::isPluginActive('jsaddons')) {
+    throw new NotFoundHttpException();
 }
-$jsaddons= new PluginJsaddonsJsaddon();
+
+Jsaddon::checkReAuthenticationOrRedirect();
+
+$jsaddon = new Jsaddon();
+
 if (isset($_POST['update'])) {
-
-   //Check UPDATE
-   $jsaddons->check($_POST['id'], UPDATE);
-   //Do object update
-   $jsaddons->update($_POST);
-   //Redirect to object form
-   Html::back();
-
-} else {
-
-   $jsaddons->checkGlobal(READ);
-
-   Html::header(
-		PluginJsaddonsJsaddon::getTypeName(2),
-		'',
-		'config',
-		'pluginjsaddonsjsaddon'
-	);
-   $jsaddons->display($_GET);
-   Html::footer();
+    $jsaddon->check((int) $_POST['id'], UPDATE);
+    $jsaddon->update($_POST);
+    Html::back();
 }
+
+$id = (int) ($_GET['id'] ?? 0);
+$jsaddon->check($id, READ);
+
+Html::header(Jsaddon::getTypeName(Session::getPluralNumber()), '', 'config', Jsaddon::class);
+$jsaddon->display(['id' => $id]);
+Html::footer();
