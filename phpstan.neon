@@ -1,0 +1,40 @@
+parameters:
+    level: 5
+    bootstrapFiles:
+        - ../../vendor/autoload.php
+        - vendor/autoload.php
+    paths:
+        - ajax
+        - front
+        - src
+        - hook.php
+        - setup.php
+    excludePaths:
+        - '**/vendor/*'
+        - '**/tests/*'
+        - '**/tools/*'
+    scanDirectories:
+        - ../../src
+        - tools/phpstan/rules
+    reportUnmatchedIgnoredErrors: false
+rules:
+    - GlpiProject\Tools\PHPStan\Rules\GlobalVarTypeRule
+services:
+    -
+        class: CustomPHPStanRules\HardcodedPasswordRule
+        tags: [phpstan.rules.rule]
+    -
+        class: CustomPHPStanRules\UnsafeFunctionsRule
+        tags: [phpstan.rules.rule]
+    -
+        class: CustomPHPStanRules\InputValidationRule
+        tags: [phpstan.rules.rule]
+    -
+        class: CustomPHPStanRules\SensitiveInfoExposureRule
+        tags: [phpstan.rules.rule]
+    -
+        class: CustomPHPStanRules\SqlInjectionRule
+        tags: [phpstan.rules.rule]
+    -
+        class: CustomPHPStanRules\PermissionControlRule
+        tags: [phpstan.rules.rule]

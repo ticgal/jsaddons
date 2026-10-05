@@ -1,1 +1,3 @@
-docs/plans/
+composer.lock
+vendor
+/docs/plans

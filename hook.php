@@ -1,4 +1,5 @@
 <?php
+
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
@@ -35,28 +36,35 @@
 
 use GlpiPlugin\Jsaddons\Jsaddon;
 
-function plugin_jsaddons_install(){
-	$migration=new Migration(PLUGIN_JSADDONS_VERSION);
+function plugin_jsaddons_install()
+{
+    $migration = new Migration(PLUGIN_JSADDONS_VERSION);
 
-	Jsaddon::install($migration);
+    Jsaddon::install($migration);
 
-	$migration->executeMigration();
+    $migration->executeMigration();
 
-	return true;
+    return true;
 }
 
-function plugin_jsaddons_uninstall(){
-	$migration=new Migration(PLUGIN_JSADDONS_VERSION);
+function plugin_jsaddons_uninstall()
+{
+    $migration = new Migration(PLUGIN_JSADDONS_VERSION);
 
-	Jsaddon::uninstall($migration);
+    Jsaddon::uninstall($migration);
 
-	$migration->executeMigration();
+    $migration->executeMigration();
 
-	return true;
+    return true;
 }
 
-function plugin_jsaddons_login(){
-	global $CFG_GLPI;
-	$version = Plugin::getInfo('jsaddons', 'version');
-	echo Html::script($CFG_GLPI['root_doc'] . "/" . PLUGIN_JSADDONS_WEB_DIR . "/jsaddons.js", ['version' => $version]);
+function plugin_jsaddons_login()
+{
+    /** @var array $CFG_GLPI */
+    global $CFG_GLPI;
+
+    echo Html::script(
+        $CFG_GLPI['root_doc'] . '/plugins/jsaddons/jsaddons.js',
+        ['version' => PLUGIN_JSADDONS_VERSION],
+    );
 }

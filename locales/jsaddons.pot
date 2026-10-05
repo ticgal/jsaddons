@@ -1,0 +1,27 @@
+# jsaddons Glpi Plugin.
+# Copyright (C) 2026 TICgal
+# This file is distributed under the same license as the PACKAGE package.
+# TICgal, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: jsaddons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-05 10:14+0200\n"
+"PO-Revision-Date: 2026-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Jsaddon.php:70
+msgid "JS Addons"
+msgstr ""
+
+#: src/Jsaddon.php:155
+msgid ""
+"Invalid key: only letters, digits and the characters . _ - / are allowed."
+msgstr ""

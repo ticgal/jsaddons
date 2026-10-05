@@ -1,4 +1,5 @@
 <?php
+
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
@@ -34,26 +35,26 @@
  ---------------------------------------------------------------------- */
 
 use GlpiPlugin\Jsaddons\Jsaddon;
- 
-header("Content-Type: application/json; charset=UTF-8");
+
+// Public endpoint (also used on the login page): see the firewall strategy in setup.php.
+header('Content-Type: application/json; charset=UTF-8');
 Html::header_nocache();
 
-$plugin=new Plugin();
-if (!$plugin->isActivated('jsaddons')) {
-	http_response_code(404);
-	echo json_encode([]);
-	return;
+if (!Plugin::isPluginActive('jsaddons')) {
+    http_response_code(404);
+    echo json_encode([]);
+    return;
 }
 
-if (($_SERVER['REQUEST_METHOD'] ?? '')!=='POST') {
-	http_response_code(405);
-	echo json_encode([]);
-	return;
+if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+    http_response_code(405);
+    echo json_encode([]);
+    return;
 }
 
 if (isset($_POST['list'])) {
-	$script=Jsaddon::getScript(!Session::getLoginUserID());
-	echo json_encode($script);
+    // Addons restricted to the login page are not served to authenticated sessions
+    echo json_encode(Jsaddon::getScript(!Session::getLoginUserID()));
 } else {
-	echo json_encode([]);
+    echo json_encode([]);
 }

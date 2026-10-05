@@ -1,4 +1,5 @@
 <?php
+
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
@@ -33,36 +34,26 @@
  @since     2018
  ---------------------------------------------------------------------- */
 
+use Glpi\Exception\Http\NotFoundHttpException;
 use GlpiPlugin\Jsaddons\Jsaddon;
- 
-$plugin=new Plugin();
-if (!$plugin->isInstalled('jsaddons') || !$plugin->isActivated('jsaddons')) {
-	throw new Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+
+if (!Plugin::isPluginActive('jsaddons')) {
+    throw new NotFoundHttpException();
 }
 
-$jsaddons= new Jsaddon();
+Jsaddon::checkReAuthenticationOrRedirect();
+
+$jsaddon = new Jsaddon();
+
 if (isset($_POST['update'])) {
-   $id = (int) ($_POST['id'] ?? 0);
-   //Check UPDATE
-   $jsaddons->check($id, UPDATE);
-   //Do object update
-   $jsaddons->update([
-		'id'		=> $id,
-		'is_active'	=> $_POST['is_active'] ?? 0,
-		'login_only'	=> $_POST['login_only'] ?? 0,
-		'key'		=> $_POST['key'] ?? '',
-	]);
-   //Redirect to object form
-   Html::back();
-} else {
-   $jsaddons->checkGlobal(READ);
-
-   Html::header(
-		Jsaddon::getTypeName(2),
-		'',
-		'config',
-		Jsaddon::class
-	);
-   $jsaddons->display($_GET);
-   Html::footer();
+    $jsaddon->check((int) $_POST['id'], UPDATE);
+    $jsaddon->update($_POST);
+    Html::back();
 }
+
+$id = (int) ($_GET['id'] ?? 0);
+$jsaddon->check($id, READ);
+
+Html::header(Jsaddon::getTypeName(Session::getPluralNumber()), '', 'config', Jsaddon::class);
+$jsaddon->display(['id' => $id]);
+Html::footer();

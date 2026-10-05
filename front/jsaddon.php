@@ -1,4 +1,5 @@
 <?php
+
 /*
  -------------------------------------------------------------------------
  JS Addons plugin for GLPI
@@ -33,27 +34,16 @@
  @since     2018
  ---------------------------------------------------------------------- */
 
+use Glpi\Exception\Http\NotFoundHttpException;
 use GlpiPlugin\Jsaddons\Jsaddon;
- 
-$plugin=new Plugin();
-if (!$plugin->isInstalled('jsaddons') || !$plugin->isActivated('jsaddons')) {
-	throw new Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+
+if (!Plugin::isPluginActive('jsaddons')) {
+    throw new NotFoundHttpException();
 }
 
-$jsaddons= new Jsaddon();
-$jsaddons->checkGlobal(READ);
+Jsaddon::checkReAuthenticationOrRedirect();
+Session::checkRight(Jsaddon::$rightname, READ);
 
-Html::header(
-	Jsaddon::getTypeName(2),
-	'',
-	'config',
-	Jsaddon::class
-);
-
-if ($jsaddons->canView()) {
-	Search::show(Jsaddon::class);
-} else {
-	throw new Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
-}
-
+Html::header(Jsaddon::getTypeName(Session::getPluralNumber()), '', 'config', Jsaddon::class);
+Search::show(Jsaddon::class);
 Html::footer();
