@@ -63,7 +63,7 @@ class Jsaddon extends CommonDBTM
      * so only the characters used by the supported providers are accepted
      * (Metricool hash, Tawk.to "property/widget", Google "G-XXXX"/"UA-X-Y").
      */
-    private const KEY_PATTERN = '/^[A-Za-z0-9._\/-]*$/';
+    private const KEY_PATTERN = '/\A[A-Za-z0-9._\/-]*\z/';
 
     public static function getTypeName($nb = 0)
     {
@@ -182,7 +182,8 @@ class Jsaddon extends CommonDBTM
         /** @var DBmysql $DB */
         global $DB;
 
-        $public_dir = realpath(Plugin::getPhpDir('jsaddons') . '/public');
+        $public_dir = Plugin::getPhpDir('jsaddons') . '/public';
+        $filenames  = array_column(self::ADDONS, 'filename');
         $script     = [];
 
         $iterator = $DB->request([
@@ -196,8 +197,14 @@ class Jsaddon extends CommonDBTM
                 continue;
             }
 
-            $file = realpath($public_dir . '/' . basename((string) $row['filename']));
-            if ($file === false || !str_starts_with($file, $public_dir . DIRECTORY_SEPARATOR)) {
+            // Only the templates shipped with the plugin, whatever the table contains
+            $filename = (string) $row['filename'];
+            if (!in_array($filename, $filenames, true)) {
+                continue;
+            }
+
+            $file = $public_dir . '/' . $filename;
+            if (!is_readable($file)) {
                 continue;
             }
 

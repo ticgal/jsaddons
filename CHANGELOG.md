@@ -12,7 +12,7 @@
 - Assets served without the `/public/` prefix
 
 ### Security
-- The addon file name can no longer be changed from the form, and only files inside `public/` are served
+- The addon file name can no longer be changed from the form, and only the snippets shipped with the plugin are served
 - Keys are validated (letters, digits and `. _ - /`) before being saved and before being served
 
 ### Fixed
