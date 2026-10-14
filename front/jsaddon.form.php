@@ -32,30 +32,36 @@
  @link      https://tic.gal
  @since     2018
  ---------------------------------------------------------------------- */
+
+use GlpiPlugin\Jsaddons\Jsaddon;
  
 $plugin=new Plugin();
 if (!$plugin->isInstalled('jsaddons') || !$plugin->isActivated('jsaddons')) {
 	throw new Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
 }
-$jsaddons= new PluginJsaddonsJsaddon();
-if (isset($_POST['update'])) {
 
+$jsaddons= new Jsaddon();
+if (isset($_POST['update'])) {
+   $id = (int) ($_POST['id'] ?? 0);
    //Check UPDATE
-   $jsaddons->check($_POST['id'], UPDATE);
+   $jsaddons->check($id, UPDATE);
    //Do object update
-   $jsaddons->update($_POST);
+   $jsaddons->update([
+		'id'		=> $id,
+		'is_active'	=> $_POST['is_active'] ?? 0,
+		'login_only'	=> $_POST['login_only'] ?? 0,
+		'key'		=> $_POST['key'] ?? '',
+	]);
    //Redirect to object form
    Html::back();
-
 } else {
-
    $jsaddons->checkGlobal(READ);
 
    Html::header(
-		PluginJsaddonsJsaddon::getTypeName(2),
+		Jsaddon::getTypeName(2),
 		'',
 		'config',
-		'pluginjsaddonsjsaddon'
+		Jsaddon::class
 	);
    $jsaddons->display($_GET);
    Html::footer();

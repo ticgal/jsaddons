@@ -32,24 +32,27 @@
  @link      https://tic.gal
  @since     2018
  ---------------------------------------------------------------------- */
+
+use GlpiPlugin\Jsaddons\Jsaddon;
  
 $plugin=new Plugin();
 if (!$plugin->isInstalled('jsaddons') || !$plugin->isActivated('jsaddons')) {
 	throw new Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
 }
 
+$jsaddons= new Jsaddon();
+$jsaddons->checkGlobal(READ);
+
 Html::header(
-	PluginJsaddonsJsaddon::getTypeName(2),
+	Jsaddon::getTypeName(2),
 	'',
 	'config',
-	'pluginjsaddonsjsaddon'
+	Jsaddon::class
 );
 
-$jsaddons= new PluginJsaddonsJsaddon();
-$jsaddons->checkGlobal(READ);
 if ($jsaddons->canView()) {
-	Search::show('PluginJsaddonsJsaddon');
-}else{
+	Search::show(Jsaddon::class);
+} else {
 	throw new Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
 }
 

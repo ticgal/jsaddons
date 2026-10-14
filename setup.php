@@ -34,11 +34,12 @@
  ---------------------------------------------------------------------- */
 
 use Glpi\Http\Firewall;
+use GlpiPlugin\Jsaddons\Jsaddon;
 
-define('PLUGIN_JSADDONS_VERSION','3.0.1');
+define('PLUGIN_JSADDONS_VERSION','3.0.2-beta1');
 
-define('PLUGIN_JSADDONS_MIN_GLPI','11.0');
-define('PLUGIN_JSADDONS_MAX_GLPI','12.0');
+define('PLUGIN_JSADDONS_MIN_GLPI','11.0.0');
+define('PLUGIN_JSADDONS_MAX_GLPI','11.0.99');
 
 define('PLUGIN_JSADDONS_WEB_DIR','plugins/jsaddons');
 
@@ -61,18 +62,19 @@ function plugin_init_jsaddons(){
 	global $PLUGIN_HOOKS,$CFG_GLPI;
 	$PLUGIN_HOOKS['csrf_compliant']['jsaddons']=true;
 
-	Firewall::addPluginStrategyForLegacyScripts(
-		'jsaddons',
-		'#^/ajax/jsaddons\.php$#',
-		Firewall::STRATEGY_NO_CHECK
-	);
-
 	$plugin=new Plugin();
 	if ($plugin->isActivated('jsaddons')) {
+		// Public on purpose: the login page has no session yet
+		Firewall::addPluginStrategyForLegacyScripts(
+			'jsaddons',
+			'#^/ajax/jsaddons\.php$#',
+			Firewall::STRATEGY_NO_CHECK
+		);
+
 		$PLUGIN_HOOKS['menu_toadd']['jsaddons'] = [
-			'config' => 'PluginJsaddonsJsaddon',
+			'config' => Jsaddon::class,
 		];
-		$PLUGIN_HOOKS['add_javascript']['jsaddons'][]="public/jsaddons.js";
+		$PLUGIN_HOOKS['add_javascript']['jsaddons'][]="jsaddons.js";
 		$PLUGIN_HOOKS['display_login']['jsaddons']="plugin_jsaddons_login";
 	}
 }

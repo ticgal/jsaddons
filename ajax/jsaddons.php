@@ -32,11 +32,28 @@
  @link      https://tic.gal
  @since     2018
  ---------------------------------------------------------------------- */
+
+use GlpiPlugin\Jsaddons\Jsaddon;
  
-header("Content-Type: text/html; charset=UTF-8");
+header("Content-Type: application/json; charset=UTF-8");
 Html::header_nocache();
 
+$plugin=new Plugin();
+if (!$plugin->isActivated('jsaddons')) {
+	http_response_code(404);
+	echo json_encode([]);
+	return;
+}
+
+if (($_SERVER['REQUEST_METHOD'] ?? '')!=='POST') {
+	http_response_code(405);
+	echo json_encode([]);
+	return;
+}
+
 if (isset($_POST['list'])) {
-	$script=PluginJsaddonsJsaddon::getScript();
+	$script=Jsaddon::getScript(!Session::getLoginUserID());
 	echo json_encode($script);
+} else {
+	echo json_encode([]);
 }
