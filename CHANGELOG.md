@@ -1,6 +1,6 @@
 # JS Addons GLPI Plugin CHANGELOG
 
-## Unreleased
+## 3.0.2 - 2026-10-21
 ## Changed
 - Plugin class moved from `inc/` to `src/` (`GlpiPlugin\Jsaddons\Jsaddon`, PSR-4); display preferences, history and saved searches are migrated on upgrade
 ## Added
