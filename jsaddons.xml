@@ -15,9 +15,15 @@
    <issues>https://github.com/ticgal/jsaddons/issues</issues>
    <readme>https://github.com/ticgal/jsaddons/blob/master/README.md</readme>
    <authors>
-      <author>TICgal</author>
+      <author>TICGAL</author>
    </authors>
    <versions>
+      <version>
+         <num>3.0.2</num>
+         <compatibility>~11.0.0</compatibility>
+         <download_url>https://github.com/ticgal/jsaddons/releases/download/3.0.2/glpi-jsaddons-3.0.2.tar.bz2</download_url>
+      </version>
+      <version>
       <version>
          <num>3.0.0</num>
          <compatibility>~11.0.0</compatibility>
