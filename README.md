@@ -26,6 +26,12 @@ Install the plugin as usual or using the new GLPI 9.5 Marketplace.
 
 The user profile must be able to edit GLPI configuration. This user will usually need a Super-Admin profile.
 
+### Privacy and security
+
+Every enabled addon loads JavaScript from a third party (Google, Tawk.to, Metricool) in **every GLPI page**, including the login page. That script can read everything shown in GLPI and the visitors' browsing data is sent to that provider. Each addon has a **Load only on the login page** option: enable it so the script does not run inside GLPI once users are logged in. Enable only the services you trust and have covered in your privacy policy (GDPR).
+
+Keys are validated when saved: only the format of each service is accepted.
+
 ### Setup
 
 There is a new **JS Addons** under **Setup** menu once the plugin is enabled. Click on it.
