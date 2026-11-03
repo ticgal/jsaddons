@@ -19,13 +19,17 @@
 - The AJAX endpoint now only accepts POST and answers `application/json`, and is only served while the plugin is active
 - Uninstall now drops the plugin table and its orphan rows in `glpi_displaypreferences`/`glpi_savedsearches`/`glpi_logs`
 - Upgrade deactivates and clears rows with an unknown addon file or an invalid key
-- Only `id`, `is_active`, `login_only` and `key` are accepted by the edit form
-- The edit form warns that third-party code runs inside GLPI when "Load only on the login page" is off
+- Only `id`, `is_active`, `login_only` and `key` are accepted by the edit form (allowlisted; previously any extra field such as `date_creation` could slip through)
+- The upgrade clean-up no longer renders a stored addon name unescaped in the admin's session message (fixes stored XSS reachable by rows left by the 3.0.0/3.0.1 releases)
+- The key is now escaped for the JavaScript string context it is injected into (`json_encode`-based), not for HTML
+- `login_only` is cast safely instead of being able to trigger a server error with a non-numeric value
+- The edit form warns that third-party code runs inside GLPI when "Load only on the login page" is off, and that the login page itself is not risk-free either (password entry, no CSP)
 
 ### Fixed
 - Installation failing with "COLLATION 'utf8mb4_unicode_ci' is not valid for CHARACTER SET 'utf8mb3'" (table charset)
 - Plugin table and data not removed on uninstall
 - The loader script is requested without the deprecated `/public` URL prefix (in development mode the deprecation notice was injected into the JS and broke it)
+- `tools/make_release.sh` now stops on the first error instead of silently packaging a release built from a failed `composer install --no-dev`
 
 ## 3.0.2 - 2026-10-21
 ## Changed

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 PARENT_FOLDER_PATH=$(dirname "$SCRIPT_DIR")

@@ -36,7 +36,7 @@ Since GLPI 12, like the core configuration, GLPI asks for the password again (re
 
 ### Privacy and security
 
-Every enabled addon loads JavaScript from a third party (Google, Tawk.to, Metricool) in **every GLPI page**, including the login page. That script can read everything shown in GLPI and the visitors' browsing data is sent to that provider. Each addon has a **Load only on the login page** option: enable it so the script does not run inside GLPI once users are logged in. Enable only the services you trust and have covered in your privacy policy (GDPR).
+Every enabled addon loads JavaScript from a third party (Google, Tawk.to, Metricool) in **every GLPI page**, including the login page. That script can read everything shown in GLPI and the visitors' browsing data is sent to that provider. Each addon has a **Load only on the login page** option: enable it so the script does not run inside GLPI once users are logged in. This reduces exposure but is not risk-free by itself: the login page is where users type their password, and GLPI does not send a Content-Security-Policy header to restrict what third-party code can do there. Enable only the services you trust and have covered in your privacy policy (GDPR).
 
 Keys are validated when saved: only the format of each service is accepted.
 

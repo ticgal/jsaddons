@@ -37,6 +37,6 @@
     {{ fields.textField('key', item.fields['key'], __('Key'), {maxlength: 255}) }}
     <div class="alert alert-warning mb-0">
         <i class="ti ti-alert-triangle me-1"></i>
-        {{ __('If "Load only on the login page" is disabled, the code of this third-party service runs inside GLPI with access to your session.', 'jsaddons') }}
+        {{ __('If "Load only on the login page" is disabled, the code of this third-party service runs inside GLPI with access to your session. Note that the login page itself is not risk-free either: it is where users type their password, and GLPI does not send a Content-Security-Policy header to restrict what runs there.', 'jsaddons') }}
     </div>
 {% endblock %}

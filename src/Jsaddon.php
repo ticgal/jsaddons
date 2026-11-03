@@ -146,19 +146,31 @@ class Jsaddon extends CommonDBTM
 
     public function prepareInputForUpdate($input)
     {
-        // The addon file and name are fixed at install time, never editable
-        unset($input['filename'], $input['name']);
+        // Only the state and the key are editable: name, filename and the
+        // creation/modification timestamps are fixed at install time
+        $input = array_intersect_key($input, array_flip(['id', 'is_active', 'login_only', 'key']));
 
-        if (isset($input['key']) && $input['key'] !== '') {
-            $filename = $this->fields['filename'] ?? '';
-            if (!self::isValidKey((string) $filename, (string) $input['key'])) {
+        if (isset($input['key'])) {
+            if (!is_scalar($input['key'])) {
                 Session::addMessageAfterRedirect(__('Invalid key', 'jsaddons'), false, ERROR);
                 return false;
+            }
+            $input['key'] = (string) $input['key'];
+            if ($input['key'] !== '') {
+                $filename = $this->fields['filename'] ?? '';
+                if (!self::isValidKey((string) $filename, $input['key'])) {
+                    Session::addMessageAfterRedirect(__('Invalid key', 'jsaddons'), false, ERROR);
+                    return false;
+                }
             }
         }
 
         if (isset($input['is_active'])) {
             $input['is_active'] = (int) (bool) $input['is_active'];
+        }
+
+        if (isset($input['login_only'])) {
+            $input['login_only'] = (int) (bool) $input['login_only'];
         }
 
         return $input;
@@ -191,10 +203,18 @@ class Jsaddon extends CommonDBTM
                 // Restore the addon file from its name so it can be enabled again
                 if ($bad_file && isset($files[$row['name']])) {
                     $values['filename'] = $files[$row['name']];
+                } elseif ($bad_file) {
+                    // Unknown addon (e.g. a pre-4.0.0 row whose name/filename could be
+                    // set to anything): wipe the name too so nothing untrusted survives
+                    // to be rendered on a later upgrade
+                    $values['name'] = __('Unknown addon', 'jsaddons');
                 }
                 $DB->update($table, $values, ['id' => $row['id']]);
                 Session::addMessageAfterRedirect(
-                    sprintf(__('JS Addons: addon "%s" had an invalid value and was deactivated'), $row['name']),
+                    sprintf(
+                        __('JS Addons: addon "%s" had an invalid value and was deactivated'),
+                        htmlescape($row['name']),
+                    ),
                     false,
                     WARNING,
                 );
@@ -239,7 +259,11 @@ class Jsaddon extends CommonDBTM
                 continue;
             }
 
-            $script[] = str_replace('##KEY##', htmlspecialchars($key, ENT_QUOTES), (string) file_get_contents($file));
+            // ##KEY## sits inside a double-quoted JS string literal in every shipped
+            // template: escape it for that context, not for HTML (the per-provider
+            // regex above already restricts the charset, this is defense in depth)
+            $js_safe_key = substr(json_encode($key, JSON_THROW_ON_ERROR), 1, -1);
+            $script[] = str_replace('##KEY##', $js_safe_key, (string) file_get_contents($file));
         }
 
         return $script;

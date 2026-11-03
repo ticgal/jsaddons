@@ -47,7 +47,12 @@ $jsaddon = new Jsaddon();
 
 if (isset($_POST['update'])) {
     $jsaddon->check((int) $_POST['id'], UPDATE);
-    $jsaddon->update($_POST);
+    $jsaddon->update([
+        'id'         => (int) $_POST['id'],
+        'is_active'  => $_POST['is_active'] ?? 0,
+        'login_only' => $_POST['login_only'] ?? 0,
+        'key'        => $_POST['key'] ?? '',
+    ]);
     Html::back();
 }
 

@@ -12,7 +12,7 @@
     },
     "config": {
         "optimize-autoloader": true,
-        "autoloader-suffix": "Jsaddons",
+        "autoloader-suffix": "PluginJsaddons",
         "platform": {
             "php": "8.3.0"
         },
