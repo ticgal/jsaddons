@@ -1,6 +1,6 @@
 # JS Addons GLPI Plugin CHANGELOG
 
-## 4.0.0-beta.1 - 2026-10-05
+## 4.0.0
 ### Added
 - GLPI 12 support (GLPI 12.0.x only)
 - Re-authentication required to manage the addons, as for the core configuration

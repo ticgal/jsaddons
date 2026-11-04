@@ -38,7 +38,7 @@ use Glpi\Http\Firewall;
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Jsaddons\Jsaddon;
 
-define('PLUGIN_JSADDONS_VERSION', '4.0.0-beta.1');
+define('PLUGIN_JSADDONS_VERSION', '4.0.0');
 
 // Minimal GLPI version, inclusive
 define('PLUGIN_JSADDONS_MIN_GLPI', '12.0.0');
